@@ -25,6 +25,7 @@ module.exports = {
 
   included: function included(app) {
     this._super.included(app);
+    console.log('included modified ember-cli-blanket');
 
     if (app.tests) {
       var fileAssets = [

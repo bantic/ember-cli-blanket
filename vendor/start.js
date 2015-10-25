@@ -1,13 +1,20 @@
 /*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
 
 function sendCoverage() {
+  console.log('calling sendCoverage!');
 	$.ajax({
 		type: 'POST',
 		url:'/write-blanket-coverage',
 		datatype: 'json',
 		contentType:'application/json; charset=utf-8',
 		data: JSON.stringify(window._$blanket_coverageData)
-	  });
+	  }).done(function() {
+      console.log('done sending coverage');
+    }).fail(function() {
+      console.log('fail sending coverage');
+    }).always(function() {
+      console.log('always sending coverage');
+    });
 }
 
 var origBlanketOnTestsDone = blanket.onTestsDone;
